@@ -17,5 +17,5 @@ These are bindings for OpenGL and some other related libraries (GLFW, SOIL, GLM,
 With all dependencies installed, run:
 
 ```sh
-$ cd samples && crystal run --link-flags -L/usr/local/lib samples/test_glfw.cr
+$ crystal run --link-flags -L/usr/local/lib samples/test_glfw.cr
 ```
