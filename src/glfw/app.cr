@@ -4,19 +4,30 @@ require "../gl"
 
 module GLFW
   class App
+    def self.window_hints
+      {
+        GLFW::SAMPLES => 4,
+        GLFW::CONTEXT_VERSION_MAJOR => 3,
+        GLFW::CONTEXT_VERSION_MINOR => 3,
+        GLFW::OPENGL_FORWARD_COMPAT => 1,
+        GLFW::OPENGL_PROFILE => GLFW::OPENGL_CORE_PROFILE,
+      }
+    end
+
+    def self.input_modes
+      { GLFW::STICKY_KEYS => GL::TRUE }
+    end
+
     def initialize(@title = "Crystal OpenGL", @width = 1024, @height = 768)
       unless GLFW.init
         raise "Failed to initialize GLFW"
       end
 
-      GLFW::C.window_hint GLFW::SAMPLES, 4
-      GLFW::C.window_hint GLFW::CONTEXT_VERSION_MAJOR, 3
-      GLFW::C.window_hint GLFW::CONTEXT_VERSION_MINOR, 3
-      GLFW::C.window_hint GLFW::OPENGL_FORWARD_COMPAT, 1
-      GLFW::C.window_hint GLFW::OPENGL_PROFILE, GLFW::OPENGL_CORE_PROFILE
+      self.class.window_hints.each do |hint, value|
+        GLFW::C.window_hint hint, value
+      end
 
       @window = GLFW::C.create_window @width, @height, @title, nil, nil
-
       raise "Failed to open GLFW window" if @window.nil?
 
       GLFW::C.set_current_context @window
@@ -29,8 +40,9 @@ module GLFW
         check_error "after GLEW initialization (ignore on OSX)"
       end
 
-      GLFW::C.set_input_mode @window, GLFW::STICKY_KEYS, 1
-      GLFW::C.set_input_mode @window, GLFW::CURSOR, GLFW::CURSOR_DISABLED
+      self.class.input_modes.each do |key, value|
+        GLFW::C.set_input_mode @window, key, value
+      end
 
       puts "OpenGL version: " + GL.version
       puts "OpenGL extensions: " + GL.extensions.join(", ")

@@ -2,6 +2,13 @@ require "../src/all"
 require "./scene"
 
 class TestApp < GLFW::App
+  def self.input_modes
+    {
+      GLFW::STICKY_KEYS => GL::TRUE,
+      GLFW::CURSOR => GLFW::CURSOR_DISABLED,
+    }
+  end
+
   def initialize
     super
 
