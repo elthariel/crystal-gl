@@ -8,9 +8,9 @@ These are bindings for OpenGL and some other related libraries (GLFW, SOIL, GLM,
 
 * Crystal 0.9.1 (earlier might work but is untested)
 * GLFW3
-** `brew install glfw3`
+ * `brew install glfw3`
 * libSOIL
-** `brew tap elthariel/libsoil && brew install libsoil`
+ * `brew tap elthariel/libsoil && brew install libsoil`
 
 ## Testing
 
