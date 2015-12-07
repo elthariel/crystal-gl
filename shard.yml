@@ -5,9 +5,4 @@ authors:
   - Gustavo Giráldez
   - Julien 'Lta' BALLET <contact@lta.io>
 
-dependencies:
-  crystal-sdl:
-    github: elthariel/crystal-sdl
-    branch: master
-
 license: MIT
