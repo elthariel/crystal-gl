@@ -1,6 +1,6 @@
 # OpenGL bindings for Crystal
 
-**This is a work in progress based on the work of ggiraldez **
+**This is a work in progress based on the work of ggiraldez**
 
 These are bindings for OpenGL and some other related libraries (GLFW, SOIL, GLM, etc.). Currently only tested on Mac OS X, but probably should work on Linux with minor modifications.
 
@@ -17,5 +17,5 @@ These are bindings for OpenGL and some other related libraries (GLFW, SOIL, GLM,
 With all dependencies installed, run:
 
 ```sh
-$ cd samples && crystal test_glfw.cr
+$ cd samples && crystal run --link-flags -L/usr/local/lib samples/test_glfw.cr
 ```

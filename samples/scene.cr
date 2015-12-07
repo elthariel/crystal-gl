@@ -27,6 +27,10 @@ class Scene
     @scene_ratio = 4.0/3.0
   end
 
+  def root
+    File.dirname(__FILE__)
+  end
+
   def direction
     GLM.vec3(Math.cos(@vertical_angle) * Math.sin(@horizontal_angle),
              Math.sin(@vertical_angle),
@@ -97,8 +101,8 @@ class Scene
   end
 
   def load_shaders
-    vertex_shader_code = File.read("shaders/vertex_shader.glsl")
-    fragment_shader_code = File.read("shaders/fragment_shader.glsl")
+    vertex_shader_code = File.read("#{root}/shaders/vertex_shader.glsl")
+    fragment_shader_code = File.read("#{root}/shaders/fragment_shader.glsl")
 
     vertex_shader = GL::Shader.vertex(vertex_shader_code).compile
     fragment_shader = GL::Shader.fragment(fragment_shader_code).compile
@@ -115,7 +119,7 @@ class Scene
   end
 
   def load_texture
-    image_data, width, height, channels = SOIL::C.load_image("textures/crystal.png",
+    image_data, width, height, channels = SOIL::C.load_image("#{root}/textures/crystal.png",
                                                              SOIL::LOAD_RGB)
     tex_id = GL::C.gen_textures 1
     GL::C.bind_texture GL::TEXTURE_2D, tex_id
