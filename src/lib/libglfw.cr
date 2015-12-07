@@ -7,21 +7,22 @@ lib LibGLFW
   fun window_hint = glfwWindowHint(target : Int32, hint : Int32) : Void
   fun terminate = glfwTerminate() : Void
 
-  fun create_window = glfwCreateWindow(width : Int32, height : Int32, title : UInt8*, 
+  fun create_window = glfwCreateWindow(width : Int32, height : Int32, title : UInt8*,
                                        monitor : Monitor, share : Window) : Window
   fun set_current_context = glfwMakeContextCurrent(window : Window) : Void
   fun get_current_context = glfwGetCurrentContext() : Window
 
-  fun set_input_mode = glfwSetInputMode(window : Window, mode : Int32, 
+  fun set_input_mode = glfwSetInputMode(window : Window, mode : Int32,
                                         value : Int32) : Void
   fun swap_buffers = glfwSwapBuffers(window : Window) : Void
+  fun swap_interval = glfwSwapInterval(interval : Int32) : Void
   fun poll_events = glfwPollEvents() : Void
   fun get_key = glfwGetKey(window : Window, key : Int32) : Int32
   fun window_should_close = glfwWindowShouldClose(window : Window) : Int32
 
-  fun get_cursor_pos = glfwGetCursorPos(window : Window, xpos : Float64*, 
+  fun get_cursor_pos = glfwGetCursorPos(window : Window, xpos : Float64*,
                                         ypos : Float64*) : Void
-  fun set_cursor_pos = glfwSetCursorPos(window : Window, xpos : Float64, 
+  fun set_cursor_pos = glfwSetCursorPos(window : Window, xpos : Float64,
                                         ypos : Float64) : Void
 
   fun get_time = glfwGetTime() : Float64
