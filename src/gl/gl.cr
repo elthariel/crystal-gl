@@ -24,12 +24,30 @@ module GL
                get_program_info_log,
                use_program, get_uniform_location, uniform_matrix_4fv)
 
-    import_fun_out(LibGL, get_integerv, false, false, {key: false, value: true})
+    import_fun_out(LibGL, get_integerv, false, false, {pname: false, value: true})
+    import_fun_out(LibGL, get_integer64v, false, false, {pname: false, value: true})
+    import_fun_out(LibGL, get_booleanv, false, false, {pname: false, value: true})
+    import_fun_out(LibGL, get_floatv, false, false, {pname: false, value: true})
+    import_fun_out(LibGL, get_doublev, false, false, {pname: false, value: true})
+
+    import_fun_out(LibGL, get_integeri_v, false, false,
+                   {pname: false, index: false, value: true})
+    import_fun_out(LibGL, get_integer64i_v, false, false,
+                   {pname: false, index: false, value: true})
+    import_fun_out(LibGL, get_booleani_v, false, false,
+                   {pname: false, index: false, value: true})
+    import_fun_out(LibGL, get_floati_v, false, false,
+                   {pname: false, index: false, value: true})
+    import_fun_out(LibGL, get_doublei_v, false, false,
+                   {pname: false, index: false, value: true})
+
     import_fun_out(LibGL, gen_vertex_arrays, false, false, {n: false, ids: true})
     import_fun_out(LibGL, gen_buffers, false, false, {n: false, ids: true})
     import_fun_out(LibGL, gen_textures, false, false, {n: false, textures: true})
-    import_fun_out(LibGL, get_shader_iv, false, false, {shader: false, key: false, value: true})
-    import_fun_out(LibGL, get_program_iv, false, false, {program: false, key: false, value: true})
+    import_fun_out(LibGL, get_shader_iv, false, false,
+                   {shader: false, key: false, value: true})
+    import_fun_out(LibGL, get_program_iv, false, false,
+                   {program: false, key: false, value: true})
   end
 
   def self.last_error
