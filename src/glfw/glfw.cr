@@ -8,7 +8,7 @@ module GLFW
                get_current_context, set_input_mode, swap_buffers, poll_events, get_key,
                window_should_close, set_cursor_pos, get_time)
 
-    import_fun_out(LibGLFW, get_cursor_pos, true, {window: false, xpos: true, ypos: true})
+    import_fun_out(LibGLFW, get_cursor_pos, true, false, {window: false, xpos: true, ypos: true})
   end
 
   def self.init

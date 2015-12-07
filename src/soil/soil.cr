@@ -5,16 +5,8 @@ require "./const"
 module SOIL
   module C
     import_fun(LibSOIL, load_texture, free_image_data, last_result)
-
-    @[AlwaysInline]
-    def self.load_image(path, mode)
-      data = LibSOIL.load_image(path, out width, out height, out channels, mode)
-      if data.null?
-        {data, 0, 0, 0}
-      else
-        {data, width, height, channels}
-      end
-    end
+    import_fun_out(LibSOIL, load_image, true, true,
+                   {path: false, width: true, height: true, channels: true, mode: false})
   end
 
   def self.last_result

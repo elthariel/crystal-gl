@@ -16,7 +16,7 @@ macro import_fun(libname, *functions)
   {% end %}
 end
 
-macro import_fun_out(libname, func, tuple, args)
+macro import_fun_out(libname, func, tuple, return_value, args)
   @[AlwaysInline]
   def self.{{func.id}}(
        {% for key, value in args %}
@@ -25,7 +25,7 @@ macro import_fun_out(libname, func, tuple, args)
          {% end %}
        {% end %}
      )
-    {{libname}}.{{func}}(
+    result = {{libname}}.{{func}}(
       {% for key, value in args %}
         {% if value %}
           out
@@ -35,6 +35,9 @@ macro import_fun_out(libname, func, tuple, args)
     )
 
     {% if tuple %} { {% end %}
+      {% if return_value %}
+        result {% if tuple %},{% end %}
+      {% end %}
       {% for key, value in args %}
         {% if value %}
           {{key.id}} {% if tuple %},{% end %}
