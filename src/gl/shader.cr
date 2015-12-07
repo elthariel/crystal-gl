@@ -1,22 +1,22 @@
-require "../lib/gl"
+require "./gl"
 
 module GL
   class Shader
     def self.vertex(source = nil)
-      shader = new LibGL::VERTEX_SHADER
+      shader = new GL::VERTEX_SHADER
       shader.with_source(source) if source
       shader
     end
 
     def self.fragment(source = nil)
-      shader = new LibGL::FRAGMENT_SHADER
+      shader = new GL::FRAGMENT_SHADER
       shader.with_source(source) if source
       shader
     end
 
     def initialize(type)
       @type = type
-      @shader_id = LibGL.create_shader(@type)
+      @shader_id = GL::C.create_shader(@type)
     end
 
     def shader_id
@@ -25,17 +25,17 @@ module GL
 
     def with_source(source : String)
       p = source.cstr
-      LibGL.shader_source @shader_id, 1, pointerof(p), nil
+      GL::C.shader_source @shader_id, 1, pointerof(p), nil
       self
     end
 
     def compile
-      LibGL.compile_shader @shader_id
+      GL::C.compile_shader @shader_id
 
-      LibGL.get_shader_iv @shader_id, LibGL::COMPILE_STATUS, out result
-      LibGL.get_shader_iv @shader_id, LibGL::INFO_LOG_LENGTH, out info_log_length
+      result = GL::C.get_shader_iv @shader_id, GL::COMPILE_STATUS
+      info_log_length = GL::C.get_shader_iv @shader_id, GL::INFO_LOG_LENGTH
       info_log = String.new(info_log_length) do |buffer|
-        LibGL.get_shader_info_log @shader_id, info_log_length, nil, buffer
+        GL::C.get_shader_info_log @shader_id, info_log_length, nil, buffer
         {info_log_length, info_log_length}
       end
       raise "Error compiling shader: #{info_log}" unless result
@@ -44,7 +44,7 @@ module GL
     end
 
     def delete
-      LibGL.delete_shader @shader_id
+      GL::C.delete_shader @shader_id
     end
   end
 end

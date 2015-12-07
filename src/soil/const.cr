@@ -1,0 +1,20 @@
+module SOIL
+  LOAD_AUTO = 0
+  LOAD_L    = 1
+  LOAD_LA   = 2
+  LOAD_RGB  = 3
+  LOAD_RGBA = 4
+
+  CREATE_NEW_ID = 0_u32
+
+  FLAG_POWER_OF_TWO      = 1_u32
+  FLAG_MIPMAPS           = 2_u32
+  FLAG_TEXTURE_REPEATS   = 4_u32
+  FLAG_MULTIPLY_ALPHA    = 8_u32
+  FLAG_INVERT_Y          = 16_u32
+  FLAG_COMPRESS_TO_DXT   = 32_u32
+  FLAG_DDS_LOAD_DIRECT   = 64_u32
+  FLAG_NTSC_SAFE_RGB     = 128_u32
+  FLAG_CoCg_Y            = 256_u32
+  FLAG_TEXTURE_RECTANGLE = 512_u32
+end
