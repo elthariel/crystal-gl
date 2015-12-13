@@ -21,7 +21,7 @@ module GL
       @program_id = GL::C.create_program
     end
 
-    def program_id
+    def id
       @program_id
     end
 

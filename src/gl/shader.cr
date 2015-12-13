@@ -32,7 +32,7 @@ module GL
       @shader_id = GL::C.create_shader(@type)
     end
 
-    def shader_id
+    def id
       @shader_id
     end
 
