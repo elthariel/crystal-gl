@@ -44,7 +44,7 @@ module GLFW
         GLFW::C.set_input_mode @window, key, value
       end
 
-      puts "OpenGL version: " + GL.version
+      puts "OpenGL version: " + GL.version.to_s
       puts "OpenGL extensions: " + GL.extensions.join(", ")
     end
 

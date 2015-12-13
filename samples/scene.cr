@@ -101,11 +101,8 @@ class Scene
   end
 
   def load_shaders
-    vertex_shader_code = File.read("#{root}/shaders/vertex_shader.glsl")
-    fragment_shader_code = File.read("#{root}/shaders/fragment_shader.glsl")
-
-    vertex_shader = GL::Shader.vertex(vertex_shader_code).compile
-    fragment_shader = GL::Shader.fragment(fragment_shader_code).compile
+    vertex_shader = GL::Shader.from_file(:vertex, "#{root}/shaders/vertex_shader.glsl").compile
+    fragment_shader = GL::Shader.from_file(:fragment, "#{root}/shaders/fragment_shader.glsl").compile
 
     program = GL::ShaderProgram.new
     program.attach vertex_shader

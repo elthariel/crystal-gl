@@ -36,7 +36,7 @@ module GL
 
     def set_uniform_matrix_4f(name, transpose, data)
       location = GL::C.get_uniform_location @program_id, name.cstr
-      GL::C.uniform_matrix_4fv location, 1, GL.to_bool(transpose), data
+      GL::C.uniform_matrix_4fv location, 1, GL.to_boolean(transpose), data
     end
   end
 end

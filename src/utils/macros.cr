@@ -16,6 +16,15 @@ macro import_fun(libname, *functions)
   {% end %}
 end
 
+macro import_fun_bool(libname, *functions)
+  {% for f, index in functions %}
+    @[AlwaysInline]
+    def self.{{f.id}}(*args)
+      {{libname.id}}.{{f.id}}(*args) != 0
+    end
+  {% end %}
+end
+
 macro import_fun_out(libname, func, tuple, return_value, args)
   @[AlwaysInline]
   def self.{{func.id}}(

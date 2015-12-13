@@ -2,15 +2,28 @@ require "./gl"
 
 module GL
   class Shader
-    def self.vertex(source = nil)
-      shader = new GL::VERTEX_SHADER
-      shader.with_source(source) if source
-      shader
+    TYPEMAP = {
+      vertex: GL::VERTEX_SHADER,
+      fragment: GL::FRAGMENT_SHADER
+    }
+
+    def self.from_file(type, path)
+      if !File.exists?(path)
+        raise ArgumentError.new("#{path} is not readable")
+      end
+
+      source = File.read(path)
+      from_source type, source
     end
 
-    def self.fragment(source = nil)
-      shader = new GL::FRAGMENT_SHADER
-      shader.with_source(source) if source
+    def self.from_source(type, source)
+      if !TYPEMAP.has_key? type
+        raise ArgumentError.new("#{type} is an unkown shader type")
+      end
+
+      type = TYPEMAP[type]
+      shader = new type
+      shader.with_source source
       shader
     end
 

@@ -42,6 +42,7 @@ lib LibGL
                                    value : GL::Float*) : Void
   fun get_doublei_v = glGetDoublei_v(pname : GL::Enum, index : GL::Uint,
                                      value : GL::Double*) : Void
+  fun is_enabled? = glIsEnabled(pname : GL::Enum) : GL::Boolean
 
   # State functions
   fun clear_color = glClearColor(red : GL::Float, green : GL::Float, blue : GL::Float,

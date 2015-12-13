@@ -1,5 +1,6 @@
 require "../utils/macros"
 require "../lib/libgl"
+require "./version"
 require "./const"
 
 macro gl_checked(call)
@@ -40,6 +41,7 @@ module GL
                    {pname: false, index: false, value: true})
     import_fun_out(LibGL, get_doublei_v, false, false,
                    {pname: false, index: false, value: true})
+    import_fun_bool(LibGL, is_enabled?)
 
     import_fun_out(LibGL, gen_vertex_arrays, false, false, {n: false, ids: true})
     import_fun_out(LibGL, gen_buffers, false, false, {n: false, ids: true})
@@ -80,7 +82,7 @@ module GL
   end
 
   def self.version
-    String.new(GL::C.get_string(GL::VERSION))
+    GL::Version.get
   end
 
   def self.extensions
@@ -111,7 +113,7 @@ module GL
     GL::C.clear GL::COLOR_BUFFER_BIT
   end
 
-  def self.to_bool(value)
+  def self.to_boolean(value)
     if value
       GL::TRUE
     else

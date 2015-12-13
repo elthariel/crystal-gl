@@ -59,10 +59,11 @@ module GL
   RGBA            = 0x1908_u32
 
   # StringName
-  VENDOR     = 0x1F00_u32
-  RENDERER   = 0x1F01_u32
-  VERSION    = 0x1F02_u32
-  EXTENSIONS = 0x1F03_u32
+  VENDOR                    = 0x1F00_u32
+  RENDERER                  = 0x1F01_u32
+  VERSION                   = 0x1F02_u32
+  EXTENSIONS                = 0x1F03_u32
+  SHADING_LANGUAGE_VERSION  = 0x8B8C_u32
 
   # TextureMagFilter
   NEAREST = 0x2600_i32
