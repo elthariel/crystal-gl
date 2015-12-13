@@ -101,18 +101,8 @@ class Scene
   end
 
   def load_shaders
-    vertex_shader = GL::Shader.from_file(:vertex, "#{root}/shaders/vertex_shader.glsl").compile
-    fragment_shader = GL::Shader.from_file(:fragment, "#{root}/shaders/fragment_shader.glsl").compile
-
-    program = GL::ShaderProgram.new
-    program.attach vertex_shader
-    program.attach fragment_shader
-    program.link
-
-    vertex_shader.delete
-    fragment_shader.delete
-
-    program
+    GL::ShaderProgram.simple("#{root}/shaders/vertex_shader.glsl",
+                             "#{root}/shaders/fragment_shader.glsl")
   end
 
   def load_texture

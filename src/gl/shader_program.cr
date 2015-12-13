@@ -2,6 +2,21 @@ require "./gl"
 
 module GL
   class ShaderProgram
+    def self.simple(vertex_path, fragment_path)
+      vertex_shader = GL::Shader.from_file(:vertex, vertex_path).compile
+      fragment_shader = GL::Shader.from_file(:fragment, fragment_path).compile
+
+      program = new
+      program.attach vertex_shader
+      program.attach fragment_shader
+      program.link
+
+      vertex_shader.delete
+      fragment_shader.delete
+
+      program
+    end
+
     def initialize
       @program_id = GL::C.create_program
     end
