@@ -46,6 +46,7 @@ module GLFW
 
       puts "OpenGL version: " + GL.version.to_s
       puts "OpenGL extensions: " + GL.extensions.join(", ")
+      puts GL::Caps.disable_dither!
     end
 
     def get_key(key)

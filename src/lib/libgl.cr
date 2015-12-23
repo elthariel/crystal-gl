@@ -92,6 +92,8 @@ lib LibGL
 
   fun create_program = glCreateProgram() : GL::Uint
   fun attach_shader = glAttachShader(program : GL::Uint, shader : GL::Uint) : Void
+  fun bind_attrib_location = glBindAttribLocation(program : GL::Uint, index : GL::Uint,
+                                                  name : GL::Char*) : Void
   fun link_program = glLinkProgram(program : GL::Uint) : Void
 
   fun get_program_iv = glGetProgramiv(program : GL::Uint, pname : GL::Enum, params : GL::Int*) : Void

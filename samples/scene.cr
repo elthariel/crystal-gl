@@ -86,7 +86,7 @@ class Scene
     GL::C.clear GL::COLOR_BUFFER_BIT | GL::DEPTH_BUFFER_BIT
 
     # Use the shader program
-    @program.use
+    @program.use!
 
     # Send the matrix to the shader program
     gl_checked @program.set_uniform_matrix_4f "MVP", false, mvp

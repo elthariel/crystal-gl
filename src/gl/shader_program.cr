@@ -26,8 +26,12 @@ module GL
     end
 
     def attach(shader)
-      GL::C.attach_shader @program_id, shader.shader_id
+      GL::C.attach_shader @program_id, shader.id
       self
+    end
+
+    def bind_attribute(location, name)
+      GL::C.bind_attribute_location(@program_id, index, name)
     end
 
     def link
@@ -44,7 +48,7 @@ module GL
       self
     end
 
-    def use
+    def use!
       GL::C.use_program @program_id
       self
     end
